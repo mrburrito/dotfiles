@@ -4,5 +4,5 @@
 brew install rbenv
 brew install ruby-build
 
-echo "Opening RubyMine Download Portal"
-open https://www.jetbrains.com/ruby/download/
+echo "Installing RubyMine"
+brew cask install rubymine
