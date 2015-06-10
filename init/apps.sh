@@ -42,8 +42,6 @@ function _download_dmg {
 	rm -f $local_file
 }
 
-
-echo "Installing Dropbox"
-
-
-echo "Installing Google Drive"
+if [ -d ~/Dropbox/.gnupg ]; then
+	ln -sf ~/Dropbox/.gnupg ~/.gnupg
+fi

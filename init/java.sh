@@ -40,6 +40,11 @@ brew install maven
 brew install ant
 
 # Configure Maven security settings from Dropbox
+if [ -d ~/Dropbox/.m2 ]; then
+	mkdir ~/.m2
+	ln -sf ~/Dropbox/.m2/settings-security.xml ~/.m2/settings-security.xml
+	cp ~/Dropbox/.m2/settings-template.xml ~/.m2/settings.xml
+fi
 
 echo "Opening IntelliJ Download Portal"
 open https://www.jetbrains.com/idea/download/
