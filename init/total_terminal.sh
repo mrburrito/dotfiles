@@ -5,4 +5,4 @@ echo "Installing TotalTerminal"
 brew cask install totalterminal
 
 echo "Configuring TotalTerminal"
-defaults import com.apple.terminal $DIR/resources/com.apple.terminal.plist
+defaults import com.apple.terminal ./resources/com.apple.terminal.plist
