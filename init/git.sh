@@ -7,7 +7,7 @@ brew install git
 
 # Configure global ignores
 $DIR/../bin/update_gitignore_global.sh
-git config --global core.excludesfile ~/.gitignore_global
+git config --global core.excludesfile $HOME/.gitignore_global
 
 function _global_config {
 	echo "Configuring global git settings"

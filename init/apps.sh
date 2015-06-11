@@ -6,11 +6,19 @@ brew cask install textmate
 echo "Installing MacDown"
 brew cask install macdown
 
+BROWSER_DIR=$HOME/.cask_browsers
+mkdir -p $BROWSER_DIR
+
 echo "Installing Chrome"
-brew cask install google-chrome
+brew cask install google-chrome --appdir=$BROWSER_DIR
 
 echo "Installing Firefox"
-brew cask install firefox
+brew cask install firefox --appdir=$BROWSER_DIR
+
+# Cask installed Browsers do not work with 1Password; must move to /Applications
+for browser in $BROWSER_DIR/*; do
+	cp -Lr "$browser" "/Applications/${i##*/}"
+fi
 
 echo "Installing Creative Cloud"
 brew cask install adobe-creative-cloud
@@ -45,6 +53,4 @@ brew cask install virtualbox
 echo "Installing Sophos"
 brew cask install sophos-anti-virus-home-edition
 
-if [ -d ~/Dropbox/.gnupg ]; then
-	ln -sf ~/Dropbox/.gnupg ~/.gnupg
-fi
+ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
