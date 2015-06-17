@@ -54,3 +54,12 @@ echo "Installing Sophos"
 brew cask install sophos-anti-virus-home-edition
 
 ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
+
+echo "Installing Node.js"
+brew install node
+
+echo "Installing Grunt, Bower, Yeoman"
+npm install -g grunt
+npm install -g grunt-cli
+npm install -g bower
+npm install -g yo
