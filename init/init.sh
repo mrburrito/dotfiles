@@ -39,3 +39,6 @@ for file in $PROFILE_DIR/.*; do
 	ln -s $file ~/$fname
 done
 ln -s $PROFILE_DIR/profile.d ~/.profile.d
+
+# Update OS X Settings
+./osx.sh

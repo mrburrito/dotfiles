@@ -15,7 +15,9 @@ brew install ant
 
 # Configure Maven security settings from Dropbox
 mkdir $HOME/.m2
-ln -sf $HOME/Dropbox/.m2/settings-security.xml $HOME/.m2/settings-security.xml
+if [ -f $HOME/Dropbox/.m2/settings-security.xml ]; then
+	ln -sf $HOME/Dropbox/.m2/settings-security.xml $HOME/.m2/settings-security.xml
+fi
 if [ -f $HOME/Dropbox/.m2/settings-template.xml ]; then
 	cp $HOME/Dropbox/.m2/settings-template.xml $HOME/.m2/settings.xml
 fi

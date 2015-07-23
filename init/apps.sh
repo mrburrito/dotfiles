@@ -35,9 +35,6 @@ brew cask install duet
 echo "Installing Google Drive"
 brew cask install google-drive
 
-echo "Installing Dropbox"
-brew cask install dropbox
-
 echo "Installing Logitech Control Center"
 brew cask install logitech-control-center
 
@@ -53,13 +50,19 @@ brew cask install virtualbox
 echo "Installing Sophos"
 brew cask install sophos-anti-virus-home-edition
 
-ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
+if [ -f $HOME/Dropbox/.gnupg ]; then
+	ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
+fi
 
 echo "Installing Node.js"
 brew install node
 
-echo "Installing Grunt, Bower, Yeoman"
+echo "Installing Grunt, Gulp, Bower, Yeoman"
 npm install -g grunt
 npm install -g grunt-cli
+npm install -g gulp
 npm install -g bower
 npm install -g yo
+
+echo "Installing WebStorm"
+brew cask install webstorm
