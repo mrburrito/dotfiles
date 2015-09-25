@@ -36,7 +36,4 @@ for version in $JAVA_VERSIONS; do
 #	$(alias j$minor=$cmd)
 done
 
-M2_HOME=/usr/local/maven
-export M2_HOME
-export PATH=$M2_HOME/bin:$PATH
 maven_opts
