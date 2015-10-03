@@ -11,25 +11,26 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install Homebrew
-./brew.sh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install TotalTerminal
-./total_terminal.sh
+# Install Cask
+brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
+
+# Install Cloud Sharing Apps
+./cloud.sh
+
+# Install general utilities
+./utils.sh
 
 # Install Miscellaneous Applications
 ./apps.sh
 
-# Install Git
-./git.sh
+# Install Browsers
+./browsers.sh
 
-# Install Java and Java utils
-./java.sh
-
-# Install Groovy
-./groovy.sh
-
-# Install Ruby utils
-./ruby.sh
+# Install dev tools
+./devtools.sh
 
 # Link profile scripts
 PROFILE_DIR=$(cd $DIR/../profile && pwd)
@@ -42,3 +43,10 @@ ln -s $PROFILE_DIR/profile.d ~/.profile.d
 
 # Update OS X Settings
 ./osx.sh
+
+# Install TotalTerminal
+echo "Installing TotalTerminal"
+brew cask install totalterminal
+
+echo "Configuring Terminal"
+defaults import com.apple.terminal $DIR/resources/com.apple.terminal.plist

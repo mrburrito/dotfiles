@@ -33,7 +33,6 @@ for version in $JAVA_VERSIONS; do
 	minor=`echo $version | cut -f 2 -d '.'`
 	set_alias="alias j$minor='switch_java $version'"
 	eval $set_alias
-#	$(alias j$minor=$cmd)
 done
 
 maven_opts

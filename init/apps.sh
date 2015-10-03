@@ -6,34 +6,14 @@ brew cask install textmate
 echo "Installing MacDown"
 brew cask install macdown
 
-BROWSER_DIR=$HOME/.cask_browsers
-mkdir -p $BROWSER_DIR
-
-echo "Installing Chrome"
-brew cask install google-chrome --appdir=$BROWSER_DIR
-
-echo "Installing Firefox"
-brew cask install firefox --appdir=$BROWSER_DIR
-
-# Cask installed Browsers do not work with 1Password; must move to /Applications
-for browser in $BROWSER_DIR/*; do
-	cp -Lr "$browser" "/Applications/${i##*/}"
-fi
-
 echo "Installing Creative Cloud"
 brew cask install adobe-creative-cloud
-
-echo "Installing Caffeine"
-brew cask install caffeine
 
 echo "Installing Adium"
 brew cask install adium
 
 echo "Installing Duet"
 brew cask install duet
-
-echo "Installing Google Drive"
-brew cask install google-drive
 
 echo "Installing Logitech Control Center"
 brew cask install logitech-control-center
@@ -46,23 +26,3 @@ brew cask install vagrant
 
 echo "Installing Virtualbox"
 brew cask install virtualbox
-
-echo "Installing Sophos"
-brew cask install sophos-anti-virus-home-edition
-
-if [ -f $HOME/Dropbox/.gnupg ]; then
-	ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
-fi
-
-echo "Installing Node.js"
-brew install node
-
-echo "Installing Grunt, Gulp, Bower, Yeoman"
-npm install -g grunt
-npm install -g grunt-cli
-npm install -g gulp
-npm install -g bower
-npm install -g yo
-
-echo "Installing WebStorm"
-brew cask install webstorm

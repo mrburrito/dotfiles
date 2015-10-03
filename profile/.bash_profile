@@ -6,7 +6,6 @@ alias ..="cd .."
 alias path='echo $PATH'
 # Turn off OS X attributes files in tar archives
 alias tar='COPYFILE_DISABLE=1 tar'
-alias avro='java -jar ~/bin/avro-tools-1.7.6.jar'
 
 function _source {
   if [ -r "$1" ]; then
