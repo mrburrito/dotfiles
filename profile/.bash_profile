@@ -17,6 +17,8 @@ function _source {
   fi
 }
 
+export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+
 for i in ~/.profile.d/*.sh ~/.local ~/.profile.d/.final; do
 	_source $i
 done

@@ -584,7 +584,7 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	"Dock" "Finder" "Google Chrome" "Mail" "Messages" \
-	"Safari" "SystemUIServer" "Terminal"; do
+	"Safari" "SystemUIServer"; do
 	killall "${app}" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."

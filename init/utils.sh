@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Installs Homebrew (http://brew.sh) and common brew packages
 

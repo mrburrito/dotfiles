@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Installs Additional Browsers
 temp=$TMPDIR$(uuidgen)
@@ -13,4 +13,4 @@ rm -r $temp
 
 echo "Install Firefox manually..."
 open https://getfirefox.com
-read -f "Press [Return] key when done..."
+read -p "Press [Return] key when done..."

@@ -40,13 +40,16 @@ for file in $PROFILE_DIR/.*; do
 	ln -s $file ~/$fname
 done
 ln -s $PROFILE_DIR/profile.d ~/.profile.d
+test -f ~/.bashrc && mv ~/.bashrc ~/.bashrc.dotfiles-backup
 
 # Update OS X Settings
 ./osx.sh
 
-# Install TotalTerminal
-echo "Installing TotalTerminal"
-brew cask install totalterminal
+echo "Please restart once the installation script completes."
 
 echo "Configuring Terminal"
 defaults import com.apple.terminal $DIR/resources/com.apple.terminal.plist
+
+# Install TotalTerminal
+echo "Installing TotalTerminal"
+brew cask install totalterminal
