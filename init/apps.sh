@@ -26,3 +26,7 @@ brew cask install vagrant
 
 echo "Installing Virtualbox"
 brew cask install virtualbox
+
+echo "Installing iTerm2"
+brew cask install iterm2-nightly
+
