@@ -30,3 +30,5 @@ brew cask install virtualbox
 echo "Installing iTerm2"
 brew cask install iterm2-nightly
 
+echo "Installing ChefDK"
+brew cask install chefdk

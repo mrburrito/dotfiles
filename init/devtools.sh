@@ -61,7 +61,7 @@ if [ -f $HOME/Dropbox/.m2/settings-template.xml ]; then
 fi
 
 echo "Installing IntelliJ"
-brew cask install intellij-idea-bundled-jdk
+brew cask install intellij-idea
 
 # Install SDKMan (formerly GVM)
 echo "Installing SDK-Man"
@@ -83,7 +83,7 @@ echo "Installing ruby-build"
 brew install ruby-build
 
 echo "Installing RubyMine"
-brew cask install rubymine-bundled-jdk
+brew cask install rubymine
 
 echo "Installing Node.js"
 brew install node
@@ -99,11 +99,14 @@ npm install -g http-server
 npm install -g swagger
 
 echo "Installing WebStorm"
-brew cask install webstorm-bundled-jdk
+brew cask install webstorm
 
 echo "Installing Python"
 brew install python
 brew install python3
 
 echo "Installing PyCharm"
-brew cask install pycharm-bundled-jdk
+brew cask install pycharm
+
+echo "Installing AWS CLI"
+pip3 install awscli
