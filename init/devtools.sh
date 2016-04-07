@@ -68,13 +68,28 @@ echo "Installing SDK-Man"
 curl -s http://get.sdkman.io | bash
 source ~/.sdkman/bin/sdkman-init.sh
 
-# Install the latest Groovy, Gradle and SpringBoot and make them the default
+# Install the latest Groovy, Gradle, SpringBoot and SBT, and make them the default
 echo "Installing Groovy"
 yes | sdk i groovy
 echo "Installing Gradle"
 yes | sdk i gradle
 echo "Installing SpringBoot"
 yes | sdk i springboot
+echo "Installing Scala"
+yes | sdk i scala
+echo "Installing SBT"
+yes | sdk i sbt
+
+# Install Scala 2.10
+SCALA210_HOME=/usr/local/share/scala-2.10
+mkdir -p /usr/local/{bin,share}
+wget -q http://downloads.lightbend.com/scala/2.10.6/scala-2.10.6.tgz -O /tmp/scala-2.10.6.tgz
+tar xzf /tmp/scala-2.10.6.tgz -C /usr/local/share
+ln -sf /usr/local/share/scala-2.10.6 $SCALA210_HOME
+for i in `ls $SCALA210_HOME/bin | grep -v bat`; do
+  ln -sf $SCALA210_HOME/bin/$i /usr/local/bin/${i}_210
+done
+rm -f /tmp/scala-2.10.6.tgz
 
 # Install rbenv
 echo "Installing rbenv"
