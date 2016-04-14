@@ -62,8 +62,10 @@ fi
 
 echo "Installing IntelliJ"
 brew cask install intellij-idea
+# Uncomment below to install IntelliJ Community Edition
+#brew cask install intellij-idea-ce
 
-# Install SDKMan (formerly GVM)
+# Install SDKMan
 echo "Installing SDK-Man"
 curl -s http://get.sdkman.io | bash
 source ~/.sdkman/bin/sdkman-init.sh
@@ -122,6 +124,8 @@ brew install python3
 
 echo "Installing PyCharm"
 brew cask install pycharm
+# Uncomment below to install PyCharm Community Edition
+#brew cask install pycharm-ce
 
 echo "Installing AWS CLI"
 pip3 install awscli

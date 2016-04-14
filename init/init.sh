@@ -49,7 +49,3 @@ echo "Please restart once the installation script completes."
 
 echo "Configuring Terminal"
 defaults import com.apple.terminal $DIR/resources/com.apple.terminal.plist
-
-# Install TotalTerminal
-echo "Installing TotalTerminal"
-brew cask install totalterminal
