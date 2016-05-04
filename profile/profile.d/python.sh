@@ -1,6 +1,7 @@
 VIRTUALENV_HOME=~/.pyenv
 
 function venv_alias {
+    venv=$1
     name=`basename $venv`
     alias $name="source $venv/bin/activate"
     alias ${name}_refresh="deactivate 2>&1 >/dev/null; rm -rf $venv && virtualenv $venv && source $venv/bin/activate"
