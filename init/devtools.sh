@@ -122,6 +122,10 @@ echo "Installing Python"
 brew install python
 brew install python3
 
+echo "Installing Cookiecutter and Pipsi"
+pip install pipsi
+pipsi --home=~/.pipsi_local --bin-dir=~/bin
+
 echo "Installing PyCharm"
 brew cask install pycharm
 # Uncomment below to install PyCharm Community Edition

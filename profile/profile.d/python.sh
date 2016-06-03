@@ -36,3 +36,8 @@ function rmvenv {
 	fi
 }
 
+PIPSI_HOME=~/.pipsi-local
+PIPSI_BIN=~/bin
+export PIPSI_HOME PIPSI_BIN
+alias pipsi='pipsi --home=$PIPSI_HOME --bin-dir=$PIPSI_BIN'
+
