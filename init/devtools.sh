@@ -124,7 +124,8 @@ brew install python3
 
 echo "Installing Cookiecutter and Pipsi"
 pip install pipsi
-pipsi --home=~/.pipsi_local --bin-dir=~/bin
+mkdir ~/.pipsi_local
+pipsi --home=~/.pipsi_local --bin-dir=~/bin install cookiecutter
 
 echo "Installing PyCharm"
 brew cask install pycharm
