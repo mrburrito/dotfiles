@@ -50,5 +50,11 @@ test -f ~/.bashrc && mv ~/.bashrc ~/.bashrc.dotfiles-backup
 
 echo "Please restart once the installation script completes."
 
+# Install ITerm2
+echo "Installing ITerm2"
+brew cask install iterm2
+
 echo "Configuring Terminal"
 defaults import com.apple.terminal $DIR/resources/com.apple.terminal.plist
+defaults import com.googlecode.iterm2 $DIR/resources/com.googlecode.iterm2.plist
+
