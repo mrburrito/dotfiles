@@ -133,4 +133,4 @@ brew cask install pycharm
 #brew cask install pycharm-ce
 
 echo "Installing AWS CLI"
-pip3 install awscli
+pip3 install -U awscli

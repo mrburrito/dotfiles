@@ -12,7 +12,7 @@ echo "Updating gitignores from https://github.com/github/gitignore"
 test -d $IGNORES && bash -c "cd $IGNORES && git pull"
 test -d $IGNORES || git clone https://github.com/github/gitignore.git $IGNORES
 
-for ignore in Archives Eclipse Emacs JetBrains MicrosoftOffice NetBeans OSX TextMate Vagrant Vim VirtualEnv Xcode; do
+for ignore in Archives Eclipse Emacs JetBrains MicrosoftOffice NetBeans macOS TextMate Vagrant Vim VirtualEnv Xcode; do
 	echo "Ignoring $ignore"
 	cat $GLOBALS/$ignore.gitignore >> $IGNORE_FILE
 done
