@@ -21,19 +21,19 @@ brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
 
 # Install Cloud Sharing Apps
-./cloud.sh
+${DIR}/cloud.sh
 
 # Install general utilities
-./utils.sh
+${DIR}/utils.sh
 
 # Install Miscellaneous Applications
-./apps.sh
+${DIR}/apps.sh
 
 # Install Browsers
-./browsers.sh
+${DIR}/browsers.sh
 
 # Install dev tools
-./devtools.sh
+${DIR}/devtools.sh
 
 # Link profile scripts
 PROFILE_DIR=$(cd ${DIR}/../profile && pwd)
@@ -46,7 +46,7 @@ ln -s ${PROFILE_DIR}/profile.d ~/.profile.d
 test -f ~/.bashrc && mv ~/.bashrc ~/.bashrc.dotfiles-backup
 
 # Update macOS Settings
-./macOS.sh
+${DIR}/macOS.sh
 
 echo "Please restart once the installation script completes."
 
