@@ -15,9 +15,6 @@ brew cask install adium
 echo "Installing Duet"
 brew cask install duet
 
-#echo "Installing Logitech Control Center"
-#brew cask install logitech-control-center
-
 echo "Installing Parallels"
 brew cask install parallels-desktop
 
@@ -26,9 +23,6 @@ brew cask install vagrant
 
 echo "Installing Virtualbox"
 brew cask install virtualbox
-
-echo "Installing iTerm2"
-brew cask install iterm2-beta
 
 echo "Installing ChefDK"
 brew cask install chefdk

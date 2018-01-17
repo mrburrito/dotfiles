@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installs Homebrew (http://brew.sh) and common brew packages
+# Installs common brew packages
 
 # Install coreutils
 brew install coreutils
@@ -12,7 +12,7 @@ brew install gnu-sed --with-default-names
 
 # Install Bash 4
 brew install bash
-sudo cat > /etc/shells <<EOF
+sudo cat >> /etc/shells <<EOF
 /usr/local/bin/bash
 EOF
 brew tap homebrew/versions
