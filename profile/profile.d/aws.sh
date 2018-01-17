@@ -1,5 +1,5 @@
 function aws-clear-tokens() {
-  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_ASSUMED_ROLE AWS_ASSUMED_ROLE_ID
 }
 
 function aws-list-profiles() {
@@ -14,7 +14,11 @@ function aws-list-profiles() {
 function aws-profile() {
   local profile=$1
   if [ -z "${profile}" ]; then
-    echo ${AWS_DEFAULT_PROFILE:-default}
+    if [ -n "${AWS_ASSUMED_ROLE}" ]; then
+      echo "Role: ${AWS_ASSUMED_ROLE} (${AWS_ASSUMED_ROLE_ID})"
+    else
+      echo ${AWS_DEFAULT_PROFILE:-default}
+    fi
   else
     export AWS_DEFAULT_PROFILE=${profile}
     aws-clear-tokens
@@ -56,6 +60,8 @@ function aws-assume-role() {
   export AWS_ACCESS_KEY_ID=$(echo ${SSM_CREDENTIALS} | jq -r ".Credentials.AccessKeyId")
   export AWS_SECRET_ACCESS_KEY=$(echo ${SSM_CREDENTIALS} | jq -r ".Credentials.SecretAccessKey")
   export AWS_SESSION_TOKEN=$(echo ${SSM_CREDENTIALS} | jq -r ".Credentials.SessionToken")
+  export AWS_ASSUMED_ROLE=${role_arn}
+  export AWS_ASSUMED_ROLE_ID=${role_session_name}
 
   echo "Assumed role ${role_arn} as ${role_session_name}"
 }
