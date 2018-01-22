@@ -30,8 +30,13 @@ function switch_java {
 
 JAVA_VERSIONS=`/usr/libexec/java_home -V 2>&1 | grep -E "^ +[0-9]" | sed 's/^ *//' | cut -f 1,2 -d '.' | uniq`
 for version in $JAVA_VERSIONS; do
+        major=`echo $version | cut -f 1 -d '.'` 
 	minor=`echo $version | cut -f 2 -d '.'`
-	set_alias="alias j$minor='switch_java $version'"
+        if [ ${major} -gt 1 ]; then
+ 	  set_alias="alias j${major}='switch_java $version'"
+        else
+	  set_alias="alias j$minor='switch_java $version'"
+        fi
 	eval $set_alias
 done
 
