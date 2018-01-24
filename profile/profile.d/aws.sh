@@ -38,6 +38,7 @@ function aws-assume-role() {
   if [ -z "${role}" ]; then
     echo "Proper Usage:"
     echo "  aws-assume-role <role_name> [accountId]"
+    return 1
   fi
 
   if [ -z "${account_id}" ]; then
