@@ -16,3 +16,5 @@ for ignore in Archives Eclipse Emacs JetBrains MicrosoftOffice NetBeans macOS Te
 	echo "Ignoring $ignore"
 	cat $GLOBALS/$ignore.gitignore >> $IGNORE_FILE
 done
+echo ".idea/" >> ${IGNORE_FILE}
+
