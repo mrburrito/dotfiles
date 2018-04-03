@@ -10,13 +10,19 @@ function maven_opts {
 		echo "No Java Found"
 	fi
 	if [[ "$_java" ]]; then
-		# Configures version as ${major}${minor} (e.g. 16, 18, 110, etc.) for simple comparisonss
-		JAVA_VERSION=$("$_java" -version 2>&1 | sed 's/java version "\(.*\)\.\(.*\)\..*"/\1\2/; 1q')
-		if [[ "$JAVA_VERSION" < "18" ]]; then
-			MAVEN_OPTS=$J6_MAVEN_OPTS
-		else
-			MAVEN_OPTS=$J8_MAVEN_OPTS
-		fi
+                JAVA_VERSION=$("$_java" -version 2>&1 | sed 's/java version "\(.*\)".*/\1/; 1q')
+                if echo ${JAVA_VERSION} | grep \\.; then
+                    MAJOR=$(echo ${JAVA_VERSION} | cut -f 1 -d '.')
+                    MINOR=$(echo ${JAVA_VERSION} | cut -f 2 -d '.')
+                else
+                    MAJOR=${JAVA_VERSION}
+                    MINOR=0
+                fi
+                if [ ${MAJOR} -gt 1 -o ${MINOR} -gt 7 ]; then
+                    MAVEN_OPTS=${J8_MAVEN_OPTS}
+                else
+                    MAVEN_OPTS=${J6_MAVEN_OPTS}
+                fi
 	fi
 	export MAVEN_OPTS
 }
@@ -30,7 +36,7 @@ function switch_java {
 
 JAVA_VERSIONS=`/usr/libexec/java_home -V 2>&1 | grep -E "^ +[0-9]" | sed 's/^ *//' | cut -f 1,2 -d '.' | uniq`
 for version in $JAVA_VERSIONS; do
-        major=`echo $version | cut -f 1 -d '.'` 
+        major=`echo $version | cut -f 1 -d '.' | cut -f 1 -d ','` 
 	minor=`echo $version | cut -f 2 -d '.'`
         if [ ${major} -gt 1 ]; then
  	  set_alias="alias j${major}='switch_java $version'"
