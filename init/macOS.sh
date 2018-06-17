@@ -112,7 +112,7 @@ defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Trackpad: Import Gesture and Tap Configuration
-defaults import com.apple.driver.AppleBluetoothMultitouch.trackpad $DIR/resources/com.apple.driver.AppleBluetoothMultitouch.trackpad.plist
+defaults import com.apple.driver.AppleBluetoothMultitouch.trackpad ${DIR}/resources/com.apple.driver.AppleBluetoothMultitouch.trackpad.plist
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad DragLock -int 0
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 0
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0

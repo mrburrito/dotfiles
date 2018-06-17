@@ -141,3 +141,6 @@ pipsi --home=${PIPSI_HOME} --bin-dir=${PIPSI_BIN} install cookiecutter
 echo "Installing AWS CLI"
 #pip3 install -U awscli
 pipsi --home=${PIPSI_HOME} --bin-dir=${PIPSI_BIN} install awscli
+
+echo "Installing Docker"
+brew cask install docker

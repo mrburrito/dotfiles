@@ -61,6 +61,10 @@ echo "Please restart once the installation script completes."
 echo "Installing ITerm2"
 brew cask install iterm2
 
+echo "Cleaning up..."
+brew cleanup
+brew cask cleanup
+
 echo "Configuring Terminal"
 defaults import com.apple.terminal ${DIR}/resources/com.apple.terminal.plist
 if [[ -f ${HOME}/Dropbox/Apps/iterm2/com.googlecode.iterm2.plist ]]; then

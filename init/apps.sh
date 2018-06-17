@@ -26,3 +26,18 @@ brew cask install virtualbox
 
 echo "Installing ChefDK"
 brew cask install chefdk
+
+echo "Installing Postman"
+brew cask install postman
+
+echo "Installing TunnelBlick"
+brew cask install tunnelblick
+
+echo "Installing Rocket.Chat"
+brew cask install rocket-chat
+
+echo "Installing Transmit"
+brew cask install transmit
+
+echo "Installing DosBox"
+brew cask install dosbox
