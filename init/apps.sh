@@ -44,3 +44,6 @@ brew cask install dosbox
 
 echo "Installing Steam"
 brew cask install steam
+
+echo "Installing Microsoft Office"
+brew cask install microsoft-office
