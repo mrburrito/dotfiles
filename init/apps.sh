@@ -24,8 +24,8 @@ brew cask install parallels-desktop
 echo "Installing Virtualbox"
 brew cask install virtualbox
 
-echo "Installing ChefDK"
-brew cask install chefdk
+#echo "Installing ChefDK"
+#brew cask install chefdk
 
 echo "Installing Postman"
 brew cask install postman
