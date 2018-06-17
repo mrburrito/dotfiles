@@ -40,10 +40,7 @@ _global_config
 # Java 8
 brew cask install java8
 
-# Java 9
-brew cask install java9
-
-# Java 10
+# Java Current
 brew cask install java
 
 # Install Java Utils with Homebrew
