@@ -41,3 +41,6 @@ brew cask install transmit
 
 echo "Installing DosBox"
 brew cask install dosbox
+
+echo "Installing Steam"
+brew cask install steam
