@@ -44,7 +44,7 @@ brew cask install java8
 brew cask install java9
 
 # Java 10
-brew cask install java10
+brew cask install java
 
 # Install Java Utils with Homebrew
 brew install maven

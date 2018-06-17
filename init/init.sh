@@ -18,6 +18,7 @@ mkdir ~/bin
 
 # Install Cask
 brew tap homebrew/cask
+brew tap homebrew/cask-versions
 
 # Install Cloud Sharing Apps
 ${DIR}/cloud.sh
