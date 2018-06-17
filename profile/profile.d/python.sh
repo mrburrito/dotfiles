@@ -1,9 +1,9 @@
 VIRTUALENV_HOME=~/.pyenv
 
 function venv_alias {
-    mkvenv_func=$1
-    venv=$2
-    name=`basename ${venv}`
+    local mkvenv_func=$1
+    local venv=$2
+    local name=`basename ${venv}`
     alias v_${name}="source ${venv}/bin/activate"
     alias v_${name}_refresh="deactivate 2>&1 >/dev/null; rmvenv ${name} && ${mkvenv_func} ${name} && source ${venv}/bin/activate"
     alias v_${name}_lib="ls ${venv}/lib/python*/site-packages"
@@ -38,6 +38,10 @@ function _mkvenv {
 
 function mkvenv {
     _mkvenv mkvenv $1
+}
+
+function mkvenv2 {
+  _mkvenv mkvenv2 $1 -p python2
 }
 
 function mkvenv3 {

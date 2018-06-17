@@ -1,3 +1,7 @@
+if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
+  . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+fi
+
 get_git_prompt() {
 	local branch
 	if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
@@ -8,7 +12,7 @@ get_git_prompt() {
 		# clean: green
 		# dirty: yellow
 		local status=$(git status --porcelain 2> /dev/null)
-		if [[ "$status" != "" ]]; then
+		if [[ "${status}" != "" ]]; then
 			echo " ($branch)"
 		else
 			echo " ($branch)"
@@ -24,14 +28,14 @@ get_git_status() {
 }
 
 # Prompt Settings
-NC=$txtrst
-SC=$bldblk
-UC=$txtcyn
-PC=$txtpur
-GC=$txtylw
-export PS1="$SC[$UC\u@\h$SC:$PC\W$GC\$(get_git_prompt)\$(get_git_status)$SC]$NC \$ "
+NC=${txtrst}
+SC=${bldblk}
+UC=${txtcyn}
+PC=${txtpur}
+GC=${txtylw}
+export PS1="${SC}[${UC}\u@\h${SC}:${PC}\W${GC}\$(get_git_prompt)\$(get_git_status)${SC}]${NC} \$ "
 
-if [ "$TERM" != "dumb" ]; then
+if [ "${TERM}" != "dumb" ]; then
   export LS_OPTIONS='--color=auto'
 	eval `dircolors ~/.dir_colors`
 fi

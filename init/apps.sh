@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Installing TextMate"
-brew cask install textmate
+#echo "Installing TextMate"
+#brew cask install textmate
 
 echo "Installing MacDown"
 brew cask install macdown
@@ -9,8 +9,8 @@ brew cask install macdown
 echo "Installing Creative Cloud"
 brew cask install adobe-creative-cloud
 
-echo "Installing Adium"
-brew cask install adium
+#echo "Installing Adium"
+#brew cask install adium
 
 echo "Installing Duet"
 brew cask install duet
@@ -18,8 +18,8 @@ brew cask install duet
 echo "Installing Parallels"
 brew cask install parallels-desktop
 
-echo "Installing Vagrant"
-brew cask install vagrant
+#echo "Installing Vagrant"
+#brew cask install vagrant
 
 echo "Installing Virtualbox"
 brew cask install virtualbox

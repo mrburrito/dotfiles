@@ -34,7 +34,7 @@ fi
 
 opcli() {
   echo "Installing 1Password CLI"
-  OP_VERSION=0.4
+  OP_VERSION=0.4.1
   curl -sL -o /tmp/op_darwin_amd64_v${OP_VERSION}.zip https://cache.agilebits.com/dist/1P/op/pkg/v${OP_VERSION}/op_darwin_amd64_v${OP_VERSION}.zip
   pushd /tmp >/dev/null
   unzip op_darwin_amd64_v${OP_VERSION}.zip

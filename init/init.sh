@@ -14,11 +14,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 mkdir ~/bin
 
 # Install Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install Cask
-#brew install caskroom/cask/brew-cask
-brew tap caskroom/versions
+brew tap homebrew/cask
 
 # Install Cloud Sharing Apps
 ${DIR}/cloud.sh

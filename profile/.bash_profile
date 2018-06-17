@@ -1,5 +1,4 @@
 export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:/usr/libexec:$PATH
-#export EDITOR="/usr/local/bin/mate -w"
 
 alias cd..="cd .."
 alias ..="cd .."
@@ -17,11 +16,8 @@ function _source {
   fi
 }
 
-#export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
-
-for i in ~/.profile.d/*.sh ~/.bash_profile.local ~/.profile.d/.final; do
-	_source $i
+for prof in ~/.profile.d/*.sh ~/.bash_profile.local ~/.profile.d/.final; do
+	_source ${prof}
 done
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
