@@ -16,7 +16,7 @@ echo "Installing Duet"
 brew cask install duet
 
 echo "Installing Parallels"
-brew cask install parallels-desktop
+brew cask install parallels
 
 #echo "Installing Vagrant"
 #brew cask install vagrant
@@ -47,3 +47,7 @@ brew cask install steam
 
 echo "Installing Microsoft Office"
 brew cask install microsoft-office
+
+echo "Installing Spotify"
+brew cask install spotify
+
