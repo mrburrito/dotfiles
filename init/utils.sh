@@ -27,6 +27,7 @@ brew install imagemagick --with-webp
 brew install p7zip
 brew install tree
 brew install gpg
+brew install jq
 
 if [ -f $HOME/Dropbox/.gnupg ]; then
 	ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
