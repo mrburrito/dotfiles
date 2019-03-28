@@ -33,7 +33,7 @@ function _mkvenv {
 	echo "${mkvenv_func}" > ${venv_dir}/.mkvenv
 	venv_alias ${mkvenv_func} ${venv_dir}
     source ${venv_dir}/bin/activate
-    pip install -U pybuilder
+    #pip install -U pybuilder
 }
 
 function mkvenv {
