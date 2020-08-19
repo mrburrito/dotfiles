@@ -1,7 +1,3 @@
-if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
-  . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-fi
-
 function _git_is_dirty() {
   [[ -n "$(git status --porcelain 2> /dev/null)" ]]
 }
