@@ -4,17 +4,14 @@
 
 DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-# Create ~/bin directory
-mkdir ~/bin
+# Create ${HOME}/bin directory
+mkdir ${HOME}/bin
 
 # Link profile scripts
 PROFILE_DIR=$(cd ${DIR}/../profile && pwd)
 for file in ${PROFILE_DIR}/.*; do
 	fname=${file##*/}
-	test -f ~/${fname} && mv ~/${fname} ~/${fname}.dotfiles-backup
-	ln -s ${file} ~/${fname}
+	test -f ${HOME}/${fname} && mv ${HOME}/${fname} ${HOME}/${fname}.dotfiles-backup
+	ln -s ${file} ${HOME}/${fname}
 done
-ln -s ${PROFILE_DIR}/profile.d ~/.profile.d
-test -f ~/.bashrc && mv ~/.bashrc ~/.bashrc.dotfiles-backup
-
-LOCAL_PROFILE=${HOME}/.bash_profile.local
+ln -s ${PROFILE_DIR}/profile.d ${HOME}/.profile.d
