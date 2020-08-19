@@ -6,6 +6,14 @@ function _git_is_git() {
   git rev-parse --abbrev-ref HEAD &>/dev/null
 }
 
+function _git_is_branch() {
+  git symbolic-ref -q --short HEAD &>/dev/null
+}
+
+function _git_is_tag() {
+  git describe --tags --exact-match &>/dev/null
+}
+
 function _git_symbolic_name() {
   git symbolic-ref -q --short HEAD \
     || git describe --tags --exact-match 2> /dev/null \
@@ -18,19 +26,34 @@ function _git_dirty_marker() {
 	fi
 }
 
+# Prompt Settings
+NC="\[${C_RESET}\]"
+SC="\[${C_BOLD_BLACK}\]"
+UC="\[${C_CYAN}\]"
+PC="\[${C_PURPLE}\]"
+GC="\[${C_YELLOW}\]"
+
 function _git_prompt() {
+  local color symbolic_name prefix
   if _git_is_git; then
-    echo " ($(_git_symbolic_name))$(_git_dirty_marker)"
+    symbolic_name="$(_git_symbolic_name)"
+    if _git_is_dirty; then
+      color="${C_YELLOW}"
+    fi
+    if _git_is_branch; then
+      color="${color:-${C_GREEN}}"
+    elif _git_is_tag; then
+      prefix="tag: "
+      color="${color:-${C_BOLD_GREEN}}"
+    else
+      prefix="detached: "
+      color="${color:-${C_RED}}"
+    fi
+    echo -e " ${color}(${prefix}${symbolic_name})$(_git_dirty_marker)${C_RESET}"
   fi
 }
 
-# Prompt Settings
-NC=${txtrst}
-SC=${bldblk}
-UC=${txtcyn}
-PC=${txtpur}
-GC=${txtylw}
-export PS1="${SC}[${UC}\u@\h${SC}:${PC}\W${GC}\$(_git_prompt)${SC}]${NC} \$ "
+export PS1="${SC}[${UC}\u@\h${SC}:${PC}\W\$(_git_prompt)${SC}]${NC} \$ "
 
 if [ "${TERM}" != "dumb" ]; then
   export LS_OPTIONS='--color=auto'
