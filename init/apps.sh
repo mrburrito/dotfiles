@@ -1,53 +1,28 @@
 #!/usr/bin/env bash
 
-#echo "Installing TextMate"
-#brew cask install textmate
-
-echo "Installing MacDown"
-brew cask install macdown
-
 echo "Installing Creative Cloud"
-brew cask install adobe-creative-cloud
-
-#echo "Installing Adium"
-#brew cask install adium
-
-echo "Installing Duet"
-brew cask install duet
+brew install adobe-creative-cloud
 
 echo "Installing Parallels"
-brew cask install parallels
+brew install parallels
 
-#echo "Installing Vagrant"
-#brew cask install vagrant
-
-echo "Installing Virtualbox"
-brew cask install virtualbox
-
-#echo "Installing ChefDK"
-#brew cask install chefdk
-
-echo "Installing Postman"
-brew cask install postman
-
-echo "Installing TunnelBlick"
-brew cask install tunnelblick
-
-echo "Installing Rocket.Chat"
-brew cask install rocket-chat
+#echo "Installing Virtualbox"
+#brew install virtualbox
 
 echo "Installing Transmit"
-brew cask install transmit
+brew install transmit
 
 echo "Installing DosBox"
-brew cask install dosbox
+brew install dosbox
 
 echo "Installing Steam"
-brew cask install steam
+brew install steam
 
 echo "Installing Microsoft Office"
-brew cask install microsoft-office
+brew install microsoft-office
 
 echo "Installing Spotify"
-brew cask install spotify
+brew install spotify
 
+echo "Installing Discord"
+brew install discord

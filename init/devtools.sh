@@ -34,32 +34,14 @@ function _global_config {
 }
 _global_config
 
-# Install SourceTree
-#brew cask install sourcetree
-
-# Java 8
-brew cask install java8
-
 # Java Current
-brew cask install java
-
-# Install Java Utils with Homebrew
-brew install maven
-brew install ant
-
-# Configure Maven security settings from Dropbox
-mkdir $HOME/.m2
-if [ -f $HOME/Dropbox/.m2/settings-security.xml ]; then
-	ln -sf $HOME/Dropbox/.m2/settings-security.xml $HOME/.m2/settings-security.xml
-fi
-if [ -f $HOME/Dropbox/.m2/settings-template.xml ]; then
-	cp $HOME/Dropbox/.m2/settings-template.xml $HOME/.m2/settings.xml
-fi
+brew install java
 
 echo "Installing IntelliJ"
-brew cask install intellij-idea
-# Uncomment below to install IntelliJ Community Edition
-#brew cask install intellij-idea-ce
+brew install intellij-idea
+
+echo "Installing VSCode"
+brew install visual-studio-code
 
 # Install SDKMan
 echo "Installing SDK-Man"
@@ -71,12 +53,12 @@ echo "Installing Groovy"
 yes | sdk i groovy
 echo "Installing Gradle"
 yes | sdk i gradle
-echo "Installing SpringBoot"
-yes | sdk i springboot
-echo "Installing Scala"
-yes | sdk i scala
-echo "Installing SBT"
-yes | sdk i sbt
+#echo "Installing SpringBoot"
+#yes | sdk i springboot
+#echo "Installing Scala"
+#yes | sdk i scala
+#echo "Installing SBT"
+#yes | sdk i sbt
 
 # Install Scala 2.10
 #SCALA210_HOME=/usr/local/share/scala-2.10
@@ -90,13 +72,10 @@ yes | sdk i sbt
 #rm -f /tmp/scala-2.10.6.tgz
 
 # Install rbenv
-echo "Installing rbenv"
-brew install rbenv
-echo "Installing ruby-build"
-brew install ruby-build
-
-#echo "Installing RubyMine"
-#brew cask install rubymine
+#echo "Installing rbenv"
+#brew install rbenv
+#echo "Installing ruby-build"
+#brew install ruby-build
 
 echo "Installing Node.js"
 brew install node
@@ -116,27 +95,21 @@ npm install -g @angular/cli
 #npm install -g http-server
 #npm install -g swagger
 
-#echo "Installing WebStorm"
-#brew cask install webstorm
-
 echo "Installing Python"
-brew install python@2
 brew install python
 
-echo "Installing Cookiecutter and Pipsi"
-PIPSI_HOME=${HOME}/.pipsi_local
-PIPSI_BIN=${HOME}/bin
-pip install pipsi
-mkdir -p ${PIPSI_HOME} ${PIPSI_BIN}
-pipsi --home=${PIPSI_HOME} --bin-dir=${PIPSI_BIN} install cookiecutter
-
-#echo "Installing PyCharm"
-#brew cask install pycharm
-# Uncomment below to install PyCharm Community Edition
-#brew cask install pycharm-ce
+#echo "Installing pipsi"
+#PIPSI_HOME=${HOME}/.pipsi_local
+#PIPSI_BIN=${HOME}/bin
+#pip install pipsi
+#mkdir -p ${PIPSI_HOME} ${PIPSI_BIN}
 
 echo "Installing AWS CLI"
 brew install awscli
 
 echo "Installing Docker"
-brew cask install docker
+brew install docker
+
+echo "Installing Go"
+brew install go \
+             golangci-lint
