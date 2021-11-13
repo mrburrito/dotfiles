@@ -8,7 +8,7 @@ sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 brew install moreutils
 brew install findutils
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 
 # Install Bash 4
 brew install bash
@@ -19,7 +19,7 @@ brew tap homebrew/versions
 brew install bash-completion2
 
 # Install 'wget' with IRI support
-brew install wget --with-iri
+brew install wget
 
 # Install other useful binaries
 #brew install ack

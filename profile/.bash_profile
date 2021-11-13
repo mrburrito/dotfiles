@@ -6,6 +6,9 @@ alias path='echo $PATH'
 # Turn off OS X attributes files in tar archives
 alias tar='COPYFILE_DISABLE=1 tar'
 
+# Add brew to path
+export PATH="/opt/homebrew/bin:${PATH}"
+
 function _source {
   if [ -r "$1" ]; then
       if [ "${-#*1}" != "$-" ]; then

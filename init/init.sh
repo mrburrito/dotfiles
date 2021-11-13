@@ -60,11 +60,10 @@ echo "Please restart once the installation script completes."
 
 # Install ITerm2
 echo "Installing ITerm2"
-brew cask install iterm2
+brew install iterm2
 
 echo "Cleaning up..."
 brew cleanup
-brew cask cleanup
 
 echo "Configuring Terminal"
 defaults import com.apple.terminal ${DIR}/resources/com.apple.terminal.plist
