@@ -34,8 +34,8 @@ function _global_config {
 }
 _global_config
 
-# Java Current
-brew install java
+# Java Current (Zulu Arm64 Build)
+brew install zulu
 
 echo "Installing IntelliJ"
 brew install intellij-idea
