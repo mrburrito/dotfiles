@@ -16,6 +16,10 @@ mkdir ~/bin
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Install RCM - dotfiles management
+# https://github.com/thoughtbot/rcm
+# brew install rcm
+
 # Install Cask
 brew tap homebrew/cask
 brew tap homebrew/cask-versions
@@ -28,6 +32,10 @@ ${DIR}/utils.sh
 
 # Install Miscellaneous Applications
 ${DIR}/apps.sh
+
+# Install Entertainment Applications
+read -p "Install Entertainment [yN]? " install_entertainment
+[[ "${install_entertainment,,:-}" =~ ^y ]] && ${DIR}/enteratinment.sh
 
 # Install Browsers
 ${DIR}/browsers.sh
