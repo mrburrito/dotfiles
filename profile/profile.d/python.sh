@@ -1,6 +1,7 @@
-export PYENV_ROOT="${HOME}/.pyenv"
-[[ -d ${PYENV_ROOT}/bin ]] && export PATH="${PYENV_ROOT}/bin:${PATH}"
-eval "$(pyenv init -)"
+PYENV_ROOT="${HOME}/.pyenv"
+export PYENV_ROOT
 
-alias spython='PYTHONPATH="src/main/python:$PYTHONPATH" python'
+[[ -d "${PYENV_ROOT}/bin" ]] && _pathmunge "${PYENV_ROOT}/bin"
+eval "$("${PYENV_ROOT}/bin/pyenv" init -)"
+
 export PATH="${HOME}/.local/bin:${PATH}"

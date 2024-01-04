@@ -1,93 +1,55 @@
-complete -C '/usr/local/bin/aws_completer' aws
-
-function aws-clear-tokens() {
-  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_ASSUMED_ROLE AWS_ASSUMED_ROLE_ID
-}
-
-function aws-list-profiles() {
-  if [ -f ~/.aws/credentials ]; then
-    local current=$(aws-profile)
-    for profile in $(grep "\[" ~/.aws/credentials | sed -E "s/\[(.+)\]/\\1/"); do
-      echo "$(test ${profile} == ${current} && echo '* ' || echo '  ')${profile}"
-    done
-  fi
-}
-
-function aws-profile() {
-  local profile=$1
-  if [ -z "${profile}" ]; then
-    if [ -n "${AWS_ASSUMED_ROLE}" ]; then
-      echo "Role: ${AWS_ASSUMED_ROLE} (${AWS_ASSUMED_ROLE_ID})"
-    else
-      echo ${AWS_DEFAULT_PROFILE:-default}
-    fi
-  else
-    export AWS_DEFAULT_PROFILE=${profile}
-    aws-clear-tokens
-  fi
-}
-
-function aws-reset() {
-  unset AWS_DEFAULT_PROFILE AWS_DEFAULT_REGION
-  aws-clear-tokens
-}
-
-function aws-assume-role() {
-  local role=$1
-  local account_id=$2
-  local role_arn=""
-
-  if [ -z "${role}" ]; then
-    echo "Proper Usage:"
-    echo "  aws-assume-role <role_name> [accountId]"
+# Execute a command with an AWS profile or set the AWS_PROFILE to the target
+function _with_aws_profile() {
+  # Check if the AWS_PROFILE argument is provided
+  if [[ -z "$1" ]]; then
+    echo "Usage: _with_aws_profile <AWS_PROFILE> [command...]"
     return 1
   fi
 
-  if [ -z "${account_id}" ]; then
-    role_arn=$(aws iam get-role --role-name ${role} || echo '{"Role":{"Arn":""}}' | jq -r '.Role.Arn')
-  else
-    role_arn="arn:aws:iam::${account_id}:role/${role}"
-  fi
-  if [ -z "${role_arn}" ]; then
-    echo "Unable to assume role: ${role} [${account_id}]"
-    return 1
+  local profile="$1"
+  shift
+
+  if [[ $# -eq 0 ]]; then
+    export AWS_PROFILE="${profile}"
   fi
 
-  local role_session_name="${USER}@${HOSTNAME}"
-  SSM_CREDENTIALS=$(aws sts assume-role --role-arn "${role_arn}" --role-session-name "${role_session_name}")
-  if [ -z "${SSM_CREDENTIALS}" ]; then
-    echo "Unable to assume role: ${role_arn}"
-    return 1
-  fi
-
-  export AWS_ACCESS_KEY_ID=$(echo ${SSM_CREDENTIALS} | jq -r ".Credentials.AccessKeyId")
-  export AWS_SECRET_ACCESS_KEY=$(echo ${SSM_CREDENTIALS} | jq -r ".Credentials.SecretAccessKey")
-  export AWS_SESSION_TOKEN=$(echo ${SSM_CREDENTIALS} | jq -r ".Credentials.SessionToken")
-  export AWS_ASSUMED_ROLE=${role_arn}
-  export AWS_ASSUMED_ROLE_ID=${role_session_name}
-
-  echo "Assumed role ${role_arn} as ${role_session_name}"
+  # Execute the command with AWS_PROFILE set
+  AWS_PROFILE="${profile}" "$@"
 }
 
-function aws-assume-role-mfa() {
-  local serial=$(aws iam list-mfa-devices | jq -r '.MFADevices[0].SerialNumber')
-  if [ -z "${serial}" -o "${serial}" == "null" ]; then
-    echo "No MFA Devices Registered"
-    aws-assume-role $*
+# Define command completion function
+function _with_aws_profile_completion() {
+  local cmd cur_word profile_list sub_cmd_start sub_cmd
+  cmd="${COMP_WORDS[0]}"
+  cur_word="${COMP_WORDS[COMP_CWORD]}"
+
+  if [[ "${cmd}" == "_with_aws_profile" ]]; then
+    sub_cmd_start=2
+
+    # If the command is _with_aws_profile and we are completing the profile, use the list of profiles
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+      # Get AWS profile list from the ~/.aws/config file
+      profile_list=$(awk -F'[][]' '/\[profile/ {gsub(/^profile /, "", $2); print $2}' ~/.aws/config)
+      # shellcheck disable=SC2207
+      COMPREPLY=($(compgen -W "${profile_list}" -- "${cur_word}"))
+      return
+    fi
   else
-    read -p "($(aws-profile)) Enter MFA Code: " mfa_code
-    if [ -z "${mfa_code}" ]; then
-      return 1
-    fi
-    TEMP_CREDS=$(aws sts get-session-token --serial-number ${serial} --token-code ${mfa_code})
-    local ret_val=$?
-    if [ ${ret_val} -ne 0 ]; then
-      echo "Unable to get MFA session token."
-      return 1
-    fi
-    AWS_ACCESS_KEY_ID=$(echo ${TEMP_CREDS} | jq -r '.Credentials.AccessKeyId') \
-      AWS_SECRET_ACCESS_KEY=$(echo ${TEMP_CREDS} | jq -r '.Credentials.SecretAccessKey') \
-      AWS_SESSION_TOKEN=$(echo ${TEMP_CREDS} | jq -r '.Credentials.SessionToken') \
-      aws-assume-role $*
+    sub_cmd_start=1
   fi
+
+  # if the subcommand is aws, use aws completions
+  if [[ "${COMP_WORDS[sub_cmd_start]}" == "aws" ]]; then
+    sub_cmd="${COMP_WORDS[*]:sub_cmd_start}"
+    completions="$(COMP_LINE="${sub_cmd}" COMP_POINT=${#sub_cmd} aws_completer)"
+  # If we are completing the subcommand, show system commands and files
+  elif [[ ${COMP_CWORD} -eq ${sub_cmd_start} ]]; then
+    completions="$(compgen -c "${cur_word}" -- "${cur_word}") $(compgen -f "${cur_word}" -- "${cur_word}")"
+  # Otherwise, show files
+  else
+    completions="$(compgen -f "${cur_word}" -- "${cur_word}")"
+  fi
+  # shellcheck disable=SC2207
+  COMPREPLY=($(compgen -W "${completions}" -- "${cur_word}"))
 }
+complete -F _with_aws_profile_completion _with_aws_profile
