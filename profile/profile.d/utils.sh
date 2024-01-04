@@ -15,3 +15,9 @@ alias ls='ls $LS_OPTIONS -hF'
 alias ll='ls $LS_OPTIONS -lhF'
 alias la='ls $LS_OPTIONS -ahF'
 alias lA='ls $LS_OPTIONS -lahF'
+
+alias groot='cd $(git root)'
+
+function grootx() {
+    cd "$(git root)" && $@
+}

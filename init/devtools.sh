@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Install git
 brew install git
@@ -18,7 +18,7 @@ function _global_config {
 		echo "Setting git global settings to:"
 		echo "\tuser.name: ${name}"
 		echo "\tuser.email: ${email}"
-		
+
 		echo -n "Are these settings correct? [yN]: "
 		read -n 1 correct
 		if [ "$correct" == "y" -o "$correct" == "Y" ]; then
@@ -112,4 +112,6 @@ brew install docker
 
 echo "Installing Go"
 brew install go \
-             golangci-lint
+	golangci-lint
+
+git config --global alias.root 'rev-parse --show-toplevel'
