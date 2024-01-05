@@ -1,5 +1,5 @@
 # Set brew prefix
-BREW_PREFIX="$(brew --prefix)"
+BREW_PREFIX=/opt/homebrew
 export BREW_PREFIX
 
 # Hide the user@host from the command prompt
