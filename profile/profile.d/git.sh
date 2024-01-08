@@ -12,7 +12,7 @@ function current_branch() {
     git rev-parse --abbrev-ref HEAD
 }
 
-function clean_branches() {
+function cleanbranches() {
     local branches
     branches="$(git branch -l | grep -v -w "$(default_branch)" | grep -v -w "$(current_branch)")"
     if [[ -n "${branches:-}" ]]; then
