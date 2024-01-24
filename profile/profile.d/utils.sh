@@ -19,5 +19,15 @@ alias lA='ls $LS_OPTIONS -lahF'
 alias groot='cd $(git root)'
 
 function grootx() {
-    cd "$(git root)" && $@
+    (cd "$(git root)" && $@)
+}
+
+# Create as functions instead of aliases so they can be passed to
+# other profile functions like _with_aws_profile (aws.sh)
+function tf() {
+    terraform "$@"
+}
+
+function tg() {
+    terragrunt "$@"
 }
