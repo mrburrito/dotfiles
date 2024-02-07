@@ -53,3 +53,6 @@ function _with_aws_profile_completion() {
   COMPREPLY=($(compgen -W "${completions}" -- "${cur_word}"))
 }
 complete -F _with_aws_profile_completion _with_aws_profile
+
+# Ensure tools load the shared AWS config
+export AWS_SDK_LOAD_CONFIG=1
