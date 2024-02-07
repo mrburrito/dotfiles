@@ -53,56 +53,29 @@ echo "Installing Groovy"
 yes | sdk i groovy
 echo "Installing Gradle"
 yes | sdk i gradle
-#echo "Installing SpringBoot"
-#yes | sdk i springboot
-#echo "Installing Scala"
-#yes | sdk i scala
-#echo "Installing SBT"
-#yes | sdk i sbt
 
-# Install Scala 2.10
-#SCALA210_HOME=/usr/local/share/scala-2.10
-#mkdir -p /usr/local/{bin,share}
-#wget -q http://downloads.lightbend.com/scala/2.10.6/scala-2.10.6.tgz -O /tmp/scala-2.10.6.tgz
-#tar xzf /tmp/scala-2.10.6.tgz -C /usr/local/share
-#ln -sf /usr/local/share/scala-2.10.6 $SCALA210_HOME
-#for i in `ls $SCALA210_HOME/bin | grep -v bat`; do
-#  ln -sf $SCALA210_HOME/bin/$i /usr/local/bin/${i}_210
-#done
-#rm -f /tmp/scala-2.10.6.tgz
-
-# Install rbenv
-#echo "Installing rbenv"
-#brew install rbenv
-#echo "Installing ruby-build"
-#brew install ruby-build
-
-echo "Installing Node.js"
-brew install node
-
-echo "Installing Yarn"
-brew install yarn
+echo "Installing nvm; defaulting node to latest LTS release"
+brew install nvm
+source "${BREW_PREFIX}/opt/nvm/nvm.sh"
+nvm alias default "lts/*"
 
 echo "Installing Angular CLI"
 npm install -g @angular/cli
 
-#npm install -g grunt
-#npm install -g grunt-cli
-#npm install -g gulp
-#npm install -g gulp-load-plugins
-#npm install -g bower
-#npm install -g yo
-#npm install -g http-server
-#npm install -g swagger
+echo "Installing pyenv"
+brew install pyenv
+eval "$("${BREW_PREFIX}/bin/pyenv" init -)"
 
-echo "Installing Python"
-brew install python
+latest_stable_python="$(pyenv install --list | grep -E '^\s*[0-9]+\.[0-9]+\.[0-9]+\s*$' | grep -Po '\s*\K\d+\.\d+' | sort -uV | tail -n 1)"
+echo "Setting default python version to latest stable version: ${latest_stable_python}"
+pyenv install --skip-existing "${latest_stable_python}"
+pyenv global "${latest_stable_python}"
 
-#echo "Installing pipsi"
-#PIPSI_HOME=${HOME}/.pipsi_local
-#PIPSI_BIN=${HOME}/bin
-#pip install pipsi
-#mkdir -p ${PIPSI_HOME} ${PIPSI_BIN}
+echo "Installing pipx"
+brew install pipx
+
+echo "Installing pre-commit"
+brew install pre-commit
 
 echo "Installing AWS CLI"
 brew install awscli
