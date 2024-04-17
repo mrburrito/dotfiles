@@ -43,6 +43,9 @@ brew install intellij-idea
 echo "Installing VSCode"
 brew install visual-studio-code
 
+echo "Installing CodeWhisperer"
+brew install codewhisperer
+
 # Install SDKMan
 echo "Installing SDK-Man"
 curl -s http://get.sdkman.io | bash
@@ -86,5 +89,12 @@ brew install docker
 echo "Installing Go"
 brew install go \
 	golangci-lint
+
+echo "Installing tfenv"
+brew install tfenv
+
+echo "Installing tgenv"
+git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
+ls -s ~/.tgenv/bin/* /usr/local/bin
 
 git config --global alias.root 'rev-parse --show-toplevel'

@@ -12,7 +12,7 @@ brew install gnu-sed
 
 # Install Bash 4
 brew install bash
-sudo cat >> /etc/shells <<EOF
+sudo cat >>/etc/shells <<EOF
 /usr/local/bin/bash
 EOF
 brew tap homebrew/versions
@@ -29,7 +29,7 @@ brew install tree
 brew install gpg
 brew install jq
 
-if [ -f $HOME/Dropbox/.gnupg ]; then
+if [[ -f $HOME/Dropbox/.gnupg ]]; then
 	ln -sf $HOME/Dropbox/.gnupg $HOME/.gnupg
 fi
 

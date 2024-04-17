@@ -3,14 +3,14 @@
 echo "Installing Creative Cloud"
 brew install adobe-creative-cloud
 
-echo "Installing Parallels"
-brew install parallels
+# echo "Installing Parallels"
+# brew install parallels
 
 #echo "Installing Virtualbox"
 #brew install virtualbox
 
-echo "Installing Transmit"
-brew install transmit
+# echo "Installing Transmit"
+# brew install transmit
 
 echo "Installing DosBox"
 brew install dosbox
