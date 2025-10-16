@@ -14,16 +14,30 @@ while true; do
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-# Create ~/bin directory
-mkdir ~/bin
+# Create bin directory and update path
+mkdir -p "${HOME}/bin"
+# Test if "${HOME}/bin" is on the path already and add it if not
+if [[ ":${PATH}:" != *":${HOME}/bin:"* ]]; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
 
 # Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! which brew &> /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  export PATH="/opt/homebrew/bin:${PATH}"
+fi
 BREW_PREFIX="$(brew --prefix)"
 
-# Install Cask
-brew tap homebrew/cask
-brew tap homebrew/cask-versions
+function opt_brew() {
+  local package="$1"
+  local label="${2:-${package}}"
+
+  read -p "Install ${label}? (y/n): " answer
+  case "${answer}" in
+    [Yy]* ) echo "Installing ${label}..."; brew install "${package}";;
+    * ) echo "Skipping ${label}..."; return;;
+  esac
+}
 
 # Install Cloud Sharing Apps
 ${DIR}/cloud.sh
@@ -58,11 +72,6 @@ else
   echo "export ONE_PASSWORD_DOMAIN=${ONE_PASSWORD_DOMAIN}" >>${LOCAL_PROFILE}
 fi
 
-# Update macOS Settings
-${DIR}/macOS.sh
-
-echo "Please restart once the installation script completes."
-
 # Install ITerm2
 echo "Installing ITerm2"
 brew install iterm2
@@ -71,9 +80,14 @@ echo "Cleaning up..."
 brew cleanup
 
 echo "Configuring Terminal"
-defaults import com.apple.terminal ${DIR}/resources/com.apple.terminal.plist
-if [[ -f ${HOME}/Dropbox/Apps/iterm2/com.googlecode.iterm2.plist ]]; then
-  defaults import com.googlecode.iterm2 ${HOME}/Dropbox/Apps/iterm2/com.googlecode.iterm2.plist
+defaults import com.apple.terminal "${DIR}/resources/com.apple.terminal.plist"
+if [[ -f "${HOME}/Dropbox/Apps/iterm2/com.googlecode.iterm2.plist" ]]; then
+  defaults import com.googlecode.iterm2 "${HOME}/Dropbox/Apps/iterm2/com.googlecode.iterm2.plist"
 else
-  defaults import com.googlecode.iterm2 ${DIR}/resources/com.googlecode.iterm2.plist
+  defaults import com.googlecode.iterm2 "${DIR}/resources/com.googlecode.iterm2.plist"
 fi
+
+# Update macOS Settings
+${DIR}/macOS.sh
+
+echo "Please restart once the installation script completes."

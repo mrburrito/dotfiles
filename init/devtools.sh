@@ -34,36 +34,16 @@ function _global_config {
 }
 _global_config
 
-# Java Current (Zulu Arm64 Build)
-brew install zulu
-
-echo "Installing IntelliJ"
-brew install intellij-idea
-
 echo "Installing VSCode"
 brew install visual-studio-code
 
-echo "Installing CodeWhisperer"
-brew install codewhisperer
-
-# Install SDKMan
-echo "Installing SDK-Man"
-curl -s http://get.sdkman.io | bash
-source ~/.sdkman/bin/sdkman-init.sh
-
-# Install the latest Groovy, Gradle, SpringBoot, Scala, and SBT, and make them the default
-echo "Installing Groovy"
-yes | sdk i groovy
-echo "Installing Gradle"
-yes | sdk i gradle
+echo "Installing Amazon Q"
+brew install amazon-q
 
 echo "Installing nvm; defaulting node to latest LTS release"
 brew install nvm
 source "${BREW_PREFIX}/opt/nvm/nvm.sh"
 nvm alias default "lts/*"
-
-echo "Installing Angular CLI"
-npm install -g @angular/cli
 
 echo "Installing pyenv"
 brew install pyenv
@@ -83,18 +63,19 @@ brew install pre-commit
 echo "Installing AWS CLI"
 brew install awscli
 
-echo "Installing Docker"
-brew install docker
+echo "Installing Container Utils: docker-desktop, kubectx, helm, helm-docs"
+brew install docker-desktop \
+			 kubectx \
+			 helm \
+			 norwoodj/tap/helm-docs
 
-echo "Installing Go"
-brew install go \
-	golangci-lint
-
-echo "Installing tfenv"
-brew install tfenv
-
-echo "Installing tgenv"
-git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
-ls -s ~/.tgenv/bin/* /usr/local/bin
+echo "Installing tf utils: tenv, terraform, terragrunt, tflint, sops"
+brew install tenv \
+			 tflint \
+			 sops
+tenv tf install latest
+tenv tf use latest
+tenv tg install latest
+tenv tg use latest
 
 git config --global alias.root 'rev-parse --show-toplevel'

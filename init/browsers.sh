@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Installing Chrome"
-brew install google-chrome
-
-echo "Installing Firefox"
-brew install firefox
+echo "Installing Browsers"
+brew install --cask google-chrome \
+                    firefox \
+                    microsoft-edge

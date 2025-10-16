@@ -1,28 +1,17 @@
 #!/usr/bin/env bash
 
-echo "Installing Creative Cloud"
-brew install adobe-creative-cloud
+opt_brew adobe-creative-cloud "Creative Cloud"
 
-# echo "Installing Parallels"
-# brew install parallels
+opt_brew parallels Parallels
 
-#echo "Installing Virtualbox"
-#brew install virtualbox
+opt_brew virtualbox VirtualBox
 
-# echo "Installing Transmit"
-# brew install transmit
+opt_brew transmit Transmit
 
-echo "Installing DosBox"
-brew install dosbox
+opt_brew dosbox DosBox
 
-echo "Installing Steam"
-brew install steam
+opt_brew steam Steam
 
-echo "Installing Microsoft Office"
-brew install microsoft-office
+opt_brew microsoft-office "Microsoft Office"
 
-echo "Installing Spotify"
-brew install spotify
-
-echo "Installing Discord"
-brew install discord
+opt_brew discord Discord
