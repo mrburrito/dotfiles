@@ -41,9 +41,9 @@ echo "Installing Amazon Q"
 brew install amazon-q
 
 echo "Installing nvm; defaulting node to latest LTS release"
-brew install nvm
-source "${BREW_PREFIX}/opt/nvm/nvm.sh"
-nvm alias default "lts/*"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+source "${HOME}/.nvm/nvm.sh"
+nvm alias default 'lts/*'
 
 echo "Installing pyenv"
 brew install pyenv

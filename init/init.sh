@@ -51,7 +51,6 @@ for file in ${PROFILE_DIR}/.*; do
   ln -s ${file} ~/${fname}
 done
 ln -s ${PROFILE_DIR}/profile.d ~/.profile.d
-test -f ~/.bashrc && mv ~/.bashrc ~/.bashrc.dotfiles-backup
 
 LOCAL_PROFILE=${HOME}/.bash_profile.local
 read -p "1Password Domain? " ONE_PASSWORD_DOMAIN
