@@ -61,6 +61,10 @@ else
   echo "export ONE_PASSWORD_DOMAIN=${ONE_PASSWORD_DOMAIN}" >>${LOCAL_PROFILE}
 fi
 
+
+# Update macOS Settings
+${DIR}/macOS.sh
+
 # Install ITerm2
 echo "Installing ITerm2"
 brew install iterm2
@@ -75,8 +79,5 @@ if [[ -f "${HOME}/Dropbox/Apps/iterm2/com.googlecode.iterm2.plist" ]]; then
 else
   defaults import com.googlecode.iterm2 "${DIR}/resources/com.googlecode.iterm2.plist"
 fi
-
-# Update macOS Settings
-${DIR}/macOS.sh
 
 echo "Please restart once the installation script completes."
