@@ -28,17 +28,6 @@ if ! which brew &> /dev/null; then
 fi
 BREW_PREFIX="$(brew --prefix)"
 
-function opt_brew() {
-  local package="$1"
-  local label="${2:-${package}}"
-
-  read -p "Install ${label}? (y/n): " answer
-  case "${answer}" in
-    [Yy]* ) echo "Installing ${label}..."; brew install "${package}";;
-    * ) echo "Skipping ${label}..."; return;;
-  esac
-}
-
 # Install Cloud Sharing Apps
 ${DIR}/cloud.sh
 
