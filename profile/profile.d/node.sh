@@ -4,9 +4,9 @@ export NVM_DIR
 alias npe='PATH="$(npm bin):$PATH"'
 
 # Load nvm
-[[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
 # Load nvm bash_completion
-[[ -s "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+[[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion"
 
 # Configure cd to check for .npmrc
 function cdnvm() {
