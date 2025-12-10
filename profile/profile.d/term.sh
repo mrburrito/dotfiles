@@ -75,4 +75,12 @@ function _user_prompt() {
   fi
 }
 
-export PS1="\$(_aws_prompt '' ' ')${SC}[\$(_user_prompt '' ':')${PC}\W\$(_git_prompt)${SC}]${NC} \$ "
+if [[ "$TERM_PROGRAM" == "kiro" ]]; then
+  # Minimal prompt, no extra banners/logging
+  PS1='\u@\h:\w\$ '
+else
+  # Your usual bash-it / prompt / logging etc.
+  PS1="\$(_aws_prompt '' ' ')${SC}[\$(_user_prompt '' ':')${PC}\W\$(_git_prompt)${SC}]${NC} \$ "
+fi
+
+export PS1
