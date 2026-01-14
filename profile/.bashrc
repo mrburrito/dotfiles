@@ -31,6 +31,7 @@ if [[ -z "${PROFILED_LOGIN_LOADED:-}" ]]; then
 fi
 
 _source "${HOME}/.profile.d/interactive"
+_source "${HOME}/.profile.d.local/interactive"
 
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"

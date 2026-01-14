@@ -35,7 +35,7 @@ function _source {
 _source "${HOME}/.profile.d/login"
 PROFILED_LOGIN_LOADED=1
 _source "${HOME}/.bash_profile.local"
-_source "${HOME}/.profile.d.local"
+_source "${HOME}/.profile.d.local/login"
 
 if is_interactive; then
   [[ -f "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"

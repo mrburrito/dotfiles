@@ -52,6 +52,30 @@ for file in ${PROFILE_DIR}/.*; do
 done
 ln -s ${PROFILE_DIR}/profile.d ~/.profile.d
 
+LOCAL_PROFILE_DIR="${HOME}/.profile.d.local"
+mkdir -p "${LOCAL_PROFILE_DIR}/login" "${LOCAL_PROFILE_DIR}/interactive"
+
+if [[ ! -f "${LOCAL_PROFILE_DIR}/login/README.md" ]]; then
+  cat <<'EOF' > "${LOCAL_PROFILE_DIR}/login/README.md"
+Login shell includes only.
+
+Place environment setup here that should apply to all login shells,
+including non-interactive login sessions. Examples: PATH updates,
+language toolchains (pyenv/nvm), shared environment variables, and
+general utilities that should not assume an interactive prompt.
+EOF
+fi
+
+if [[ ! -f "${LOCAL_PROFILE_DIR}/interactive/README.md" ]]; then
+  cat <<'EOF' > "${LOCAL_PROFILE_DIR}/interactive/README.md"
+Interactive shell includes only.
+
+Place prompt setup, aliases, completions, and UI-oriented helpers here.
+These scripts may assume an interactive terminal and should not be
+required for non-interactive login sessions.
+EOF
+fi
+
 LOCAL_PROFILE=${HOME}/.bash_profile.local
 read -p "1Password Domain? " ONE_PASSWORD_DOMAIN
 if grep "ONE_PASSWORD_DOMAIN=" ${LOCAL_PROFILE} >/dev/null; then
