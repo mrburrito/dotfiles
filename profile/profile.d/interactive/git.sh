@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 function default_branch() {
     local branch
     branch="$(git branch -l main master --format '%(refname:short)' | head -n 1)"

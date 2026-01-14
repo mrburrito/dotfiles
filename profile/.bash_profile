@@ -6,37 +6,17 @@ if ! declare -F is_kiro_agent >/dev/null 2>&1; then
   }
 fi
 
+if ! declare -F is_interactive >/dev/null 2>&1; then
+  function is_interactive() {
+    [[ $- == *i* ]]
+  }
+fi
+
+
 # Kiro CLI pre block. Keep at the top of this file.
 if ! is_kiro_agent; then
   [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bash_profile.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bash_profile.pre.bash"
 fi
-
-# Set brew prefix
-BREW_PREFIX=/opt/homebrew
-export BREW_PREFIX
-
-# Hide the user@host from the command prompt
-HIDE_USER_PROMPT=1
-
-function _pathmunge() {
-  if ! echo ${PATH} | "${BREW_PREFIX}/bin/ggrep" -q "(^|:)$1($|:)"; then
-    if [[ "$2" == "after" ]]; then
-      PATH="${PATH}:$1"
-    else
-      PATH="$1:${PATH}"
-    fi
-    export PATH
-  fi
-}
-
-_pathmunge "${HOME}/bin"
-_pathmunge "${BREW_PREFIX}/sbin"
-_pathmunge "${BREW_PREFIX}/bin"
-_pathmunge "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-_pathmunge "${BREW_PREFIX}/opt/grep/libexec/gnubin"
-_pathmunge /usr/local/bin
-_pathmunge /usr/local/sbin
-_pathmunge /usr/libexec
 
 function _source {
   if [[ -d "$1" ]]; then
@@ -52,10 +32,14 @@ function _source {
   fi
 }
 
-_source "${HOME}/.profile.d"
+_source "${HOME}/.profile.d/login"
+PROFILED_LOGIN_LOADED=1
 _source "${HOME}/.bash_profile.local"
 _source "${HOME}/.profile.d.local"
-_source "${HOME}/.profile.d/.final"
+
+if is_interactive; then
+  [[ -f "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 

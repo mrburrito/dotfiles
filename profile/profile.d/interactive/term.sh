@@ -1,4 +1,7 @@
+# shellcheck shell=bash
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
+HIDE_USER_PROMPT=1
 
 if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
   . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
