@@ -79,3 +79,7 @@ tenv tg install latest
 tenv tg use latest
 
 git config --global alias.root 'rev-parse --show-toplevel'
+
+echo "Installing rust"
+brew install rustup
+rustup-init --no-modify-path -y
