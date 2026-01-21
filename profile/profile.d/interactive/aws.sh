@@ -1,21 +1,4 @@
-# Execute a command with an AWS profile or set the AWS_PROFILE to the target
-function _with_aws_profile() {
-  # Check if the AWS_PROFILE argument is provided
-  if [[ -z "$1" ]]; then
-    echo "Usage: _with_aws_profile <AWS_PROFILE> [command...]"
-    return 1
-  fi
-
-  local profile="$1"
-  shift
-
-  if [[ $# -eq 0 ]]; then
-    export AWS_PROFILE="${profile}"
-  fi
-
-  # Execute the command with AWS_PROFILE set
-  AWS_PROFILE="${profile}" "$@"
-}
+# shellcheck shell=bash
 
 # Define command completion function
 function _with_aws_profile_completion() {
@@ -53,6 +36,3 @@ function _with_aws_profile_completion() {
   COMPREPLY=($(compgen -W "${completions}" -- "${cur_word}"))
 }
 complete -F _with_aws_profile_completion _with_aws_profile
-
-# Ensure tools load the shared AWS config
-export AWS_SDK_LOAD_CONFIG=1

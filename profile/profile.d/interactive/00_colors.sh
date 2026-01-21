@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 C_BLACK="\033[0;30m"
 C_RED="\033[0;31m"
 C_GREEN="\033[0;32m"

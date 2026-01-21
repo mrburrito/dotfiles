@@ -1,4 +1,7 @@
+# shellcheck shell=bash
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
+HIDE_USER_PROMPT=1
 
 if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
   . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
@@ -75,4 +78,12 @@ function _user_prompt() {
   fi
 }
 
-export PS1="\$(_aws_prompt '' ' ')${SC}[\$(_user_prompt '' ':')${PC}\W\$(_git_prompt)${SC}]${NC} \$ "
+if is_kiro_agent; then
+  # Minimal prompt, no extra banners/logging
+  PS1='[kiro] \u@\h:\w\$ '
+else
+  # Your usual bash-it / prompt / logging etc.
+  PS1="\$(_aws_prompt '' ' ')${SC}[\$(_user_prompt '' ':')${PC}\W\$(_git_prompt)${SC}]${NC} \$ "
+fi
+
+export PS1

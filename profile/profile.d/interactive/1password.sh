@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 alias op-login='eval $(op signin ${ONE_PASSWORD_DOMAIN})'
 
 op-password() {
