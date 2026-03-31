@@ -33,3 +33,6 @@ function tf() {
 function tg() {
     terragrunt "$@"
 }
+
+alias tgsource='tg init --source-update'
+
